@@ -28,12 +28,27 @@ Each `DataRow` object contains marketing metrics at a day/channel level.
 #### AdvancedMMMRequest Format
 
 {
-  "data": [ { /* DataRow */ }, ... ],
-  "features": ["total_spend", "total_clicks"],
-  "target_kpi": "leads"
+  "type": "object",
+  "properties": {
+    "channels": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "spend": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": { "type": "number" }
+      }
+    },
+    "sales": {
+      "type": "array",
+      "items": { "type": "number" }
+    },
+    "what_if_spend": {
+      "type": "array",
+      "items": { "type": "number" }
+    }
+  },
+  "required": ["channels", "spend", "sales"]
 }
-data: array of DataRow objects
-
-features: input fields for modeling
-
-target_kpi: KPI to predict
